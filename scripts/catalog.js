@@ -1,87 +1,148 @@
-const navDotsContainer = document.querySelector('.navigation-dots');
-const slider = document.querySelector('#image-slider');
-const nextBtn = document.querySelector('.next-btn');
-const prevBtn = document.querySelector('.prev-btn');
+// TODO: 1) в index.html 
+// -подключить все view шаблоны
+// +подключить storage
+// -подключить в конце router.js
+
+// 2) в storage:
+// -конфиг
+// +класс с async getCatalog
+// -+класс с async getCategory
+// +класс с async getCategoryClass
 
 
-var currImage = 0;
-var time = 6 * 1000; // 6 seconds
-var amountOfSlides = 4;
-function changeSliderImage() {
-    navDotsContainer.children[currImage].classList.remove('active');
+const catalogElem = document.querySelector('.catalog_items_list')
+async function getCategories() {
+    let categList = await appStorage.getCatalog();
+    for (let category in categList) {
+        //console.log('1-' + categList[category].types[1].name)
 
-    if (currImage < amountOfSlides - 1) {
-        currImage++;
-    } else {
-        currImage = 0;
-    }
-    navDotsContainer.children[currImage].classList.add('active');
-    slider.src = `./assets/slider/slide-${currImage}.jpg`;
-    setTimeout('changeSliderImage()', time);
-}
-prevBtn.addEventListener('click', () => {
-    navDotsContainer.children[currImage].classList.remove('active');
-    if (currImage > 0) {
-        currImage--;
-    } else {
-        currImage = amountOfSlides - 1;
-    }
-    navDotsContainer.children[currImage].classList.add('active');
-    slider.src = `./assets/slider/slide-${currImage}.jpg`;
-})
-nextBtn.addEventListener('click', () => {
-    navDotsContainer.children[currImage].classList.remove('active');
-    if (currImage < amountOfSlides - 1) {
-        currImage++;
-    } else {
-        currImage = 0;
-    }
-    navDotsContainer.children[currImage].classList.add('active');
-    slider.src = `./assets/slider/slide-${currImage}.jpg`;
-})
+        let categWrapper = document.createElement("div");
+        categWrapper.classList.add('category-wrapper');
 
-// navigation dots
-function createNavigationDots() {
-    for (let i = 0; i < amountOfSlides; i++) {
-        const dot = document.createElement('li');
-        if (currImage === i) {
-            dot.classList.add('active');
+        let categItem = document.createElement("div");
+        categItem.classList.add('category-item');
+
+        let categImgDiv = document.createElement("div");
+        categImgDiv.classList.add('img');
+
+        let categImgLink = document.createElement("a");
+        categImgLink.setAttribute('href', '/product/' + categList[category].route);
+
+        let img = document.createElement("img");
+        img.classList.add('category-img');
+        img.src = categList[category].image;
+        // info block
+        let categInfo = document.createElement("div");
+        categInfo.classList.add('category-info');
+        // info > name
+        let categNameDiv = document.createElement("div");
+        categNameDiv.classList.add('category-name');
+        let categName = document.createElement("a");
+        categName.setAttribute('href', '/product/' + categList[category].route);
+        categName.innerHTML = categList[category].name;
+        categName.classList.add('dark-link');
+        categNameDiv.appendChild(categName);
+
+        // info > classes
+        let categClasses = document.createElement("ul");
+        categClasses.classList.add('category-classes');
+        let categTag = categList[category].types;
+        for (var i = 0; i < categTag.length; i++) {
+            let li = document.createElement("li");
+            let classLink = document.createElement("a");
+            classLink.setAttribute('href', '/product/' + categList[category].route + '/' + categTag[i].route);
+            classLink.classList.add('category-class');
+            classLink.innerHTML = categTag[i]['name'];
+            li.appendChild(classLink);
+            categClasses.appendChild(li);
         }
-        dot.classList.add('single-dot');
-        navDotsContainer.appendChild(dot);
+
+        //Appending children
+        categInfo.appendChild(categNameDiv)
+        categInfo.appendChild(categClasses)
+        categImgLink.appendChild(img)
+        categImgDiv.appendChild(categImgLink)
+        categItem.appendChild(categImgDiv)
+        categItem.appendChild(categInfo)
+        categWrapper.appendChild(categItem)
+        catalogElem.appendChild(categWrapper)
     }
+
+    firebase.database().ref('Vodoprof/').on('value', snapshot => {
+        // snapshot is value object of 'Vodoprof' key
+        // childSnapshot is category
+        snapshot.forEach(childSnapshot => {
+            // let key = childSnapshot.key
+            let data = childSnapshot.val()
+            // console.log(data)
+            // console.log(key + " has name " + data['name'])
+
+            // let categWrapper = document.createElement("div");
+            // categWrapper.classList.add('category-wrapper');
+
+            // let categItem = document.createElement("div");
+            // categItem.classList.add('category-item');
+
+            // let categImgDiv = document.createElement("div");
+            // categImgDiv.classList.add('img');
+
+            // let categImgLink = document.createElement("a");
+            // categImgLink.setAttribute('href', '/product/' + data['route']);
+
+            // let img = document.createElement("img");
+            // img.classList.add('category-img');
+            // img.src = data['image'];
+            // // info block
+            // let categInfo = document.createElement("div");
+            // categInfo.classList.add('category-info');
+            // // info > name
+            // let categNameDiv = document.createElement("div");
+            // categNameDiv.classList.add('category-name');
+            // let categName = document.createElement("a");
+            // categName.setAttribute('href', '/product/' + data['route']);
+            // categName.innerHTML = data['name'];
+            // categName.classList.add('dark-link');
+            // categNameDiv.appendChild(categName);
+
+            // // info > classes
+            // let categClasses = document.createElement("ul");
+            // categClasses.classList.add('category-classes');
+            // let categTag = data['types'];
+            // for (var i = 0; i < categTag.length; i++) {
+            //     let li = document.createElement("li");
+            //     let classLink = document.createElement("a");
+            //     classLink.setAttribute('href', '/product/' + data['route'] + '/' + categTag[i]['route']);
+            //     classLink.classList.add('category-class');
+            //     classLink.innerHTML = categTag[i]['name'];
+            //     li.appendChild(classLink);
+            //     categClasses.appendChild(li);
+            // }
+
+            // //Appending children
+            // categInfo.appendChild(categNameDiv)
+            // categInfo.appendChild(categClasses)
+            // categImgLink.appendChild(img)
+            // categImgDiv.appendChild(categImgLink)
+            // categItem.appendChild(categImgDiv)
+            // categItem.appendChild(categInfo)
+            // categWrapper.appendChild(categItem)
+            // catalog.appendChild(categWrapper)
+        });
+    })
 }
-createNavigationDots();
 
-//clicking dot
-const navigationDots = document.querySelectorAll('.single-dot');
-navigationDots.forEach((dot, index) => dot.addEventListener('click', () => {
-    // clearing whites
-    navigationDots.forEach(el => el.classList.remove('active'))
-    // adding white to clicked
-    navDotsContainer.children[index].classList.add('active');
-    slider.src = `./assets/slider/slide-${index}.jpg`;
-    currImage = index;
-}));
+async function getTypesFromCategory(name) {
+    let category = await appStorage.getCategory(name);
+    console.log(category)
+}
 
-//Fixed navbar
-// function fixedNav(){
-//     const nav = document.querySelector('nav')
-//     if (window.scrollY >= 500) {
-//         nav.classList.add('fixed__nav')
-//     } else {
-//         nav.classList.remove('fixed__nav')
-//     }
-// }
-// window.addEventListener('scroll', fixedNav)
-// css:
-// .fixed_nav{
-//     background: #fefefe;
-//     position: fixed;
-//     left: 0;
-//     right: 0;
-//     z-index: 111;
-// }
-//Fixed navbar end
+async function getTypeFromCategory(category, type) {
+    let categ = await appStorage.getCategoryClass(category, type);
+    console.log(categ)
+}
 
-window.onload = changeSliderImage;
+
+getCategories();
+//getCategory()
+//getTypesFromCategory('drenazh');
+//getTypeFromCategory('drenazh', 'drenazh-kolodzi');

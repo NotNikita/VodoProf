@@ -623,7 +623,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .map-address-block{
   flex-direction: column;
-  line-height: 1rem;
+  line-height: 1.1em;
   width: 90%;
   text-align: center;
   padding: 0 0 10px 20px;

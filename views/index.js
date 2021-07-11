@@ -97,44 +97,7 @@ const index = `
     </div>
 </article>
 
-<article class="map-block gray-background">
-    <script type="text/javascript" charset="utf-8" async <script type="text/javascript" charset="utf-8" async
-        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A6e671742735b3713168048e0ada4747d0b86077ab2379c80bc73e6008847308f&amp;width=100%25&amp;height=550&amp;lang=ru_RU&amp;scroll=true"></script>
 
 
-    <div class="pane__info">
-        <div class="title-block bottom-white-line">
-            <h3 class="medium-size-text">Наши Контакты</h3>
-        </div>
-        <div class="info-block">
-            <div class="map-address-block">
-                Г. Минск, ул. Пономаренко 35а офис 329<br>
-                <a class="address-link" href="mailto:alarmenergo@list.ru"><span
-                        style="font-size: 12pt;">alarmenergo@list.ru</span></a>
-            </div>
-            <div class="menu__phone-block">
-                <div class="phone-left">
-                    <div class="phone_left-inner">
-
-                        <div class="phone with_dropdown big">
-                            <i class="fas fa-phone-alt" style="color: red;"></i>
-                            <a href="tel:+375291743113">+375-29-174-31-13</a>
-                        </div>
-                        <div class=" schedule">
-                            Пн. – Пт.: с 8:00 до 17:00 </div>
-                    </div>
-                </div>
-            </div>
-            <div class="email-block">
-                <i class="far fa-envelope" style="color: red;"></i>
-                <a href="mailto:alarmenergo@list.ru">alarmenergo@list.ru</a>
-            </div>
-            <div class="phone-right">
-                <input class="phone-right_button" type="button" value="Задать вопрос">
-            </div>
-        </div>
-    </div>
-
-</article>
-<script src="./scripts/catalog.js"></script>
+<script src="../scripts/slider.js"></script>
 `;

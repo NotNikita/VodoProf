@@ -9,10 +9,9 @@ const routes = {
 
 const scripts = {
     '/': "scripts/catalog.js",
-    '/product': "scripts/catalog.js"
+    '/product': "scripts/product.js"
 }
 
-const authRoutes = ['/create'];
 
 function getPathWithoutParams(pathname) {
     let startParamsIndex = pathname.indexOf('?');
@@ -30,15 +29,11 @@ function addScript(pathname) {
 }
 
 async function addContent(pathname) {
-    if (authRoutes.includes(pathname)) {
-        let isAuth = await authService.isAuthenticated();
-        if (!isAuth) {
-            onNavigate('/404');
-            return;
-        }
-    }
+    console.log('ADDCONTENT FUNC WITH PARAM= ' + pathname)
+
     pathname = getPathWithoutParams(pathname);
     if (pathname in routes) {
+        console.log('ADDCONTENT FUNC')
         rootDiv.innerHTML = routes[pathname];
         if (pathname in scripts) {
             addScript(pathname);
@@ -50,6 +45,7 @@ async function addContent(pathname) {
 }
 
 const onNavigate = (pathname) => {
+    console.log('onNavigate WITH PARAM= ' + pathname)
     window.history.pushState(
         {},
         pathname,
