@@ -622,11 +622,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 20px;
 }
 .map-address-block{
-  justify-content: center;
   flex-direction: column;
   line-height: 1rem;
-  width: 60%;
-  margin-top: 15px;
+  width: 90%;
+  text-align: center;
   padding: 0 0 10px 20px;
 }
 .email-block a{
@@ -679,6 +678,3 @@ h1, h2, h3, h4, h5, h6 {
 .footer-address div{
   margin-top: 10px;
 }
-
-
-
