@@ -22,7 +22,7 @@ const index = `
     <div class="content">
         <section class="about-us__item">
             <div>
-                <img src="assets/about_us/garanty.png" alt="Quality Garanty">
+                <img src="./assets/about_us/garanty.png" alt="Quality Garanty">
                 <h3>Гарантия качества</h3>
             </div>
             <p>
@@ -32,7 +32,7 @@ const index = `
 
         <section class="about-us__item">
             <div>
-                <img src="assets/about_us/optimal_choice.png" alt="">
+                <img src="./assets/about_us/optimal_choice.png" alt="">
                 <h3>Оптимальный выбор</h3>
             </div>
             <p>
@@ -42,7 +42,7 @@ const index = `
 
         <section class="about-us__item">
             <div>
-                <img src="assets/about_us/ship_intime.png" alt="">
+                <img src="./assets/about_us/ship_intime.png" alt="">
                 <h3>Доставка в срок</h3>
             </div>
             <p>
@@ -72,21 +72,21 @@ const index = `
             <!-- <div class="category-wrapper">
           <div class="category-item">
             <div class="img">
-              <a href="/product/category-name/"><img src="./assets/test-catalog.jpg" alt="category image" class="category-img"></a>
+              <a href="./product/category-name/"><img src="./assets/test-catalog.jpg" alt="category image" class="category-img"></a>
             </div>
             <div class="category-info">
               <div class="category-name">
-                <a href="/product/category-name" class="dark-link">Внешний линейный водоотвод</a>
+                <a href="./product/category-name" class="dark-link">Внешний линейный водоотвод</a>
               </div>
               <ul class="category-classes">
                 <li>
-                  <a class ="category-class" href="/product/category-name/class-inside-category">some tag</a>
+                  <a class ="category-class" href="./product/category-name/class-inside-category">some tag</a>
                 </li>
                 <li>
-                  <a class ="category-class" href="/product/category-name/class-inside-category">some tag</a>
+                  <a class ="category-class" href="./product/category-name/class-inside-category">some tag</a>
                 </li>
                 <li>
-                  <a class ="category-class" href="/product/category-name/class-inside-category">some tag</a>
+                  <a class ="category-class" href="./product/category-name/class-inside-category">some tag</a>
                 </li>
               </ul>
             </div>

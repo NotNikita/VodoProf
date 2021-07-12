@@ -8,8 +8,8 @@ const routes = {
 };
 
 const scripts = {
-    '/': "scripts/catalog.js",
-    '/product': "scripts/product.js"
+    '/': "./scripts/catalog.js",
+    '/product': "./scripts/product.js"
 }
 
 
